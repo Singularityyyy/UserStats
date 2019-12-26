@@ -61,10 +61,10 @@ FROM (
 
 -- aggregating all the data we need 		
 SELECT 
-	CONVERT(CHAR(5), a.year_month, 120) + CONVERT(CHAR(2), a.year_month, 101) AS [Год и месяц появления пользователя в системе]
-	, a.year_month_reg_quantity AS [Количество новых пользователей (пришедших в этом месяце)]
-	, ISNULL(b.second_month_quantity, 0) AS [Количество пользователей, вернувшихся на второй календарный месяц после регистрации]
-	, CAST(ISNULL(b.second_month_quantity, 0)*100/a.year_month_reg_quantity as varchar(20)) + '%' AS [Вероятность возврата]
+	CONVERT(CHAR(5), a.year_month, 120) + CONVERT(CHAR(2), a.year_month, 101) AS [Р“РѕРґ Рё РјРµСЃСЏС† РїРѕСЏРІР»РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ СЃРёСЃС‚РµРјРµ]
+	, a.year_month_reg_quantity AS [РљРѕР»РёС‡РµСЃС‚РІРѕ РЅРѕРІС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ (РїСЂРёС€РµРґС€РёС… РІ СЌС‚РѕРј РјРµСЃСЏС†Рµ)]
+	, ISNULL(b.second_month_quantity, 0) AS [РљРѕР»РёС‡РµСЃС‚РІРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№, РІРµСЂРЅСѓРІС€РёС…СЃСЏ РЅР° РІС‚РѕСЂРѕР№ РєР°Р»РµРЅРґР°СЂРЅС‹Р№ РјРµСЃСЏС† РїРѕСЃР»Рµ СЂРµРіРёСЃС‚СЂР°С†РёРё]
+	, CAST(ISNULL(b.second_month_quantity, 0)*100/a.year_month_reg_quantity as varchar(20)) + '%' AS [Р’РµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РІРѕР·РІСЂР°С‚Р°]
 FROM #users_first_event_quantity AS a
 	LEFT JOIN #users_returned_on_2nd_month_quantity AS b
 		ON a.year_month = b.year_month
