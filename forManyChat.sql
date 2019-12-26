@@ -39,7 +39,7 @@ SELECT y.* INTO #users_first_event_quantity
 FROM (
 		SELECT
 			first_event_datetime AS year_month
-			, count(user_id) AS year_month_reg_quantity
+			, COUNT(user_id) AS year_month_reg_quantity
 		FROM #users_first_event 
 		GROUP BY first_event_datetime
 	 ) AS y
@@ -64,7 +64,7 @@ SELECT
 	CONVERT(CHAR(5), a.year_month, 120) + CONVERT(CHAR(2), a.year_month, 101) AS [Год и месяц появления пользователя в системе]
 	, a.year_month_reg_quantity AS [Количество новых пользователей (пришедших в этом месяце)]
 	, ISNULL(b.second_month_quantity, 0) AS [Количество пользователей, вернувшихся на второй календарный месяц после регистрации]
-	, CAST(ISNULL(b.second_month_quantity, 0)*100/a.year_month_reg_quantity as varchar(20)) + '%' AS [Вероятность возврата]
+	, CAST(ISNULL(b.second_month_quantity, 0)*100/a.year_month_reg_quantity AS varchar(20)) + '%' AS [Вероятность возврата]
 FROM #users_first_event_quantity AS a
 	LEFT JOIN #users_returned_on_2nd_month_quantity AS b
 		ON a.year_month = b.year_month
