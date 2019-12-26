@@ -57,7 +57,7 @@ FROM (
 				  --AND 
 				  DATEADD(MONTH, 1, reg.first_event_datetime) IN (DATEADD(MONTH, DATEDIFF(MONTH, 0, event_timestamp), 0))
 			GROUP BY reg.first_event_datetime
-	 ) as z
+	 ) AS z
 
 -- aggregating all the data we need 		
 SELECT 
