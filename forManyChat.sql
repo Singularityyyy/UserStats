@@ -59,7 +59,7 @@ FROM (
 			GROUP BY reg.first_event_datetime
 	 ) AS z
 
--- aggregating all the data we need 		
+-- aggregating and formatting all the data we need with the 		
 SELECT 
 	CONVERT(CHAR(5), a.year_month, 120) + CONVERT(CHAR(2), a.year_month, 101) AS [Год и месяц появления пользователя в системе]
 	, a.year_month_reg_quantity AS [Количество новых пользователей (пришедших в этом месяце)]
