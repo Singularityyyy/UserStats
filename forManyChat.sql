@@ -44,7 +44,7 @@ FROM (
 		GROUP BY first_event_datetime
 	 ) AS y
 	
--- counting users who were absent during their registration month --AND returned next month
+-- counting users who were active in their second month --(+ AND were absent during their registration month)
 SELECT z.* INTO #users_returned_on_2nd_month_quantity
 FROM (
 		SELECT
